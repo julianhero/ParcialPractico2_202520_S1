@@ -1,31 +1,36 @@
 <h1>Lista de Películas</h1>
-<div>
-  <div>
-    @if(selected){
-    <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
-    }
-    <table>
-      <tr>
-        <th scope="col">Título</th>
-        <th scope="col">Poster</th>
-        <th scope="col">Director</th>
-        <th scope="col">Año</th>
-        <th scope="col">Calificación</th>
-      </tr>
-      @for(movie of movies; track movie.id) {
 
-      <tr (click)="onSelect(movie)">
-        <td>
-          <b>{{ movie.title }}</b>
-        </td>
-        <td>
-          <img class="poster-img" [src]="movie.posterImageUrl" alt="{{ movie.title }} poster" />
-        </td>
-        <td>{{ movie.director }}</td>
-        <td>{{ movie.releaseYear }}</td>
-        <td>{{ movie.rating }}</td>
-      </tr>
-      }
-    </table>
+<div class="container-fluid">
+  <div class="row">
+    @for (movie of movies; track movie.id) {
+     <div class = "col">
+      <div
+        class="card p-2 m-2"
+        style="width: 15rem; height: 33rem; cursor: pointer"
+        (click)="onSelect(movie)"
+      >
+        <img
+          class="card-img-top"
+          [src]="movie.posterImageUrl"
+          [alt]=""
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <ul>
+             
+          </ul>
+          <p>{{movie.genre}}</p>
+          <p>{{movie.director}}</p>
+          <p>{{movie.releaseYear}}</p>
+        </div>
+      </div>
+    </div> 
+    }
   </div>
+
+
+
+  @if(selected){
+    <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
+  }
 </div>
